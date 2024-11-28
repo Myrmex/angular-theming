@@ -8,4 +8,5 @@ Repro for [SO question](https://stackoverflow.com/questions/79230742/proper-angu
 - [question about using V3 themes](https://stackoverflow.com/questions/79153638/how-to-i-make-themes-work-with-angular-18-and-materials-3)
 - [question about color variants](https://github.com/angular/components/issues/29160)
 - [another question about color variants](https://github.com/angular/components/issues/28805)
+- [using variables for theming](https://angular-material.dev/articles/angular-material-theming-css-vars)
 - schematics for custom theme: `ng generate @angular/material:m3-theme`
