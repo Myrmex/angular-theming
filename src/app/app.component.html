@@ -10,11 +10,37 @@
     <mat-card-content>
       <p>This is an example.</p>
       <div class="form-row">
-        <button type="button" mat-raised-button class="mat-primary">
+        <button
+          type="button"
+          mat-raised-button
+          class="mat-primary"
+          (click)="onClick($event)"
+        >
           primary
         </button>
-        <button type="button" mat-raised-button class="mat-warn">
+        <button
+          type="button"
+          mat-raised-button
+          class="mat-warn"
+          (click)="onClick($event)"
+        >
           warn
+        </button>
+        <button
+          type="button"
+          mat-icon-button
+          class="mat-primary"
+          (click)="onClick($event)"
+        >
+          <mat-icon>save</mat-icon>
+        </button>
+        <button
+          type="button"
+          mat-icon-button
+          class="mat-warn"
+          (click)="onClick($event)"
+        >
+          <mat-icon>delete</mat-icon>
         </button>
       </div>
     </mat-card-content>

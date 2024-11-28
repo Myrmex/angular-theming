@@ -20,5 +20,7 @@ import { MatCardModule } from '@angular/material/card';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  title = 'an19';
+  public onClick(event: MouseEvent): void {
+    console.log('Button click', event);
+  }
 }
