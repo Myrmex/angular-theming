@@ -3,6 +3,9 @@ import { isPlatformBrowser } from '@angular/common';
 
 const THEME_KEY = 'app-theme-preference';
 
+/**
+ * Theme service to manage light/dark theme.
+ */
 @Injectable({
   providedIn: 'root',
 })
@@ -17,18 +20,39 @@ export class ThemeService {
   }
 
   /**
-   * Initialize theme on app startup
+   * Get the system theme preference.
+   * @returns 'light' or 'dark' based on system preference.
+   */
+  private getSystemTheme(): 'light' | 'dark' {
+    return window.matchMedia('(prefers-color-scheme: dark)').matches
+      ? 'dark'
+      : 'light';
+  }
+
+  /**
+   * Get the saved theme preference from localStorage.
+   * @returns Saved theme or null.
+   */
+  private getSavedTheme(): 'light' | 'dark' | null {
+    if (!isPlatformBrowser(this.platformId)) return null;
+
+    const savedTheme = localStorage.getItem(THEME_KEY);
+    return savedTheme === 'light' || savedTheme === 'dark' ? savedTheme : null;
+  }
+
+  /**
+   * Initialize theme on app startup.
    */
   public initializeTheme() {
     if (!isPlatformBrowser(this.platformId)) return;
     const savedTheme = this.getSavedTheme();
     const systemTheme = this.getSystemTheme();
 
-    // Prefer saved theme, fall back to system theme
+    // prefer saved theme, falling back to system theme
     const initialTheme = savedTheme || systemTheme;
     this.setTheme(initialTheme);
 
-    // Listen for system theme changes
+    // listen for system theme changes
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
     mediaQuery.addEventListener('change', (e) => {
       if (!this.getSavedTheme()) {
@@ -58,13 +82,13 @@ export class ThemeService {
 
     console.log('Setting theme:', theme);
 
-    // Save theme preference
+    // save theme preference
     localStorage.setItem(THEME_KEY, theme);
 
-    // Set color-scheme on html element
+    // set color-scheme on html element
     this._htmlElement?.setAttribute('color-scheme', theme);
 
-    // Toggle theme-specific classes
+    // toggle theme-specific classes
     if (theme === 'dark') {
       console.log('Adding dark-theme class');
       this._htmlElement?.classList.add('dark-theme');
@@ -85,25 +109,8 @@ export class ThemeService {
     return this._htmlElement?.getAttribute('color-scheme') as 'light' | 'dark';
   }
 
-  private getSystemTheme(): 'light' | 'dark' {
-    return window.matchMedia('(prefers-color-scheme: dark)').matches
-      ? 'dark'
-      : 'light';
-  }
-
   /**
-   * Get saved theme preference from localStorage
-   * @returns Saved theme or null.
-   */
-  private getSavedTheme(): 'light' | 'dark' | null {
-    if (!isPlatformBrowser(this.platformId)) return null;
-
-    const savedTheme = localStorage.getItem(THEME_KEY);
-    return savedTheme === 'light' || savedTheme === 'dark' ? savedTheme : null;
-  }
-
-  /**
-   * Set theme based on system preference
+   * Set theme based on system preference.
    */
   public setThemeFromSystemPreference() {
     if (!isPlatformBrowser(this.platformId)) return;

@@ -4,6 +4,9 @@ import { MatButtonModule } from '@angular/material/button';
 
 import { ThemeService } from '../../services/theme.service';
 
+/**
+ * Theme toggle component.
+ */
 @Component({
   selector: 'app-theme-toggle',
   imports: [MatButtonModule, MatIconModule],
