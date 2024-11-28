@@ -49,5 +49,6 @@ body {
   color: var(--mat-sys-on-surface);
 }
 
+// https://material.angular.io/guide/material-2-theming#optional-add-backwards-compatibility-styles-for-color-variants
 @include mat.color-variants-backwards-compatibility($light-theme);
 @include mat.color-variants-backwards-compatibility($dark-theme);

@@ -28,6 +28,14 @@
         </button>
         <button
           type="button"
+          mat-raised-button
+          class="mat-accent"
+          (click)="onClick($event)"
+        >
+          accent
+        </button>
+        <button
+          type="button"
           mat-icon-button
           class="mat-primary"
           (click)="onClick($event)"
@@ -41,6 +49,14 @@
           (click)="onClick($event)"
         >
           <mat-icon>delete</mat-icon>
+        </button>
+        <button
+          type="button"
+          mat-icon-button
+          class="mat-accent"
+          (click)="onClick($event)"
+        >
+          <mat-icon>favorite</mat-icon>
         </button>
       </div>
     </mat-card-content>
